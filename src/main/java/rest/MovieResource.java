@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.sun.research.ws.wadl.Param;
 import dtos.MovieDTO;
 
 //Make sure NOT to have any references to your Entity Classes here
@@ -52,13 +53,15 @@ public class MovieResource {
     public String getAll() {
         throw new UnsupportedOperationException();
     }
-
+    
+    /*
     @Path("/{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getById(@PathParam("id") int id) {
+    public String getById(@Path Param("id") int id) {
         throw new UnsupportedOperationException();
     }
+*/
 
     @Path("title/{title}")
     @GET

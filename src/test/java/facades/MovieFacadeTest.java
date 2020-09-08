@@ -72,7 +72,7 @@ public class MovieFacadeTest {
     
     @Test
     public void testGetAllMovies(){
-        //Tode
+
     }
 
     @Test
@@ -89,8 +89,5 @@ public class MovieFacadeTest {
     public void getMoviesByTitle(){
         //Todo
     }
-
-
-
 }
 */

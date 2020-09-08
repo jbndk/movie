@@ -39,7 +39,7 @@ public class MovieFacade  {
     public long getMovieCount() {
         EntityManager em = emf.createEntityManager();
         try {
-            long movieCount = (long) em.createQuery("SELECT COUNT(m) FROM Movie m").getSingleResult();
+            long movieCount = (long) em.createQuery("SELECT COUNT(m) FROM MOVIE m").getSingleResult();
             return movieCount;
         } finally {
             em.close();
@@ -48,7 +48,7 @@ public class MovieFacade  {
 
     public List<MovieDTO> getAllMovies() {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Movie> query =  em.createQuery("SELECT m FROM Movie m",Movie.class);
+        TypedQuery<Movie> query =  em.createQuery("SELECT m FROM MOVIE m",Movie.class);
         List<Movie> movies = query.getResultList();
         List<MovieDTO> movieDTOs = new ArrayList();
         movies.forEach((Movie movie) -> {
@@ -59,8 +59,8 @@ public class MovieFacade  {
 
     public List<MovieDTO> getMoviesByTitle(String title) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m WHERE m.title LIKE :title", Movie.class);
-        query.setParameter("title", "%"+title+"%");
+        TypedQuery<Movie> query = em.createQuery("SELECT m FROM MOVIE m WHERE m.TITLE LIKE :TITLE", Movie.class);
+        query.setParameter("TITLE", "%"+title+"%");
         List<Movie> movies = query.getResultList();
         List<MovieDTO> movieDTOs = new ArrayList();
         movies.forEach((Movie movie) -> {
@@ -97,7 +97,7 @@ public class MovieFacade  {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createQuery("DELETE from Movie").executeUpdate();
+            em.createQuery("DELETE from MOVIE").executeUpdate();
             em.persist(new Movie(2002, "Harry Potter and the Chamber of Secrets", new String[]{"Daniel Radcliffe", "Emma Watson", "Alan Rickman", "Rupert Grint"}));
             em.persist(new Movie(2001, "Harry Potter and the Philosopher's Stone", new String[]{"Daniel Radcliffe", "Emma Watson","Alan Rickman", "Rupert Grint"}));
             em.persist(new Movie(2019, "Once Upon a Time... in Hollywood", new String[]{"Leonardo DiCaprio", "Brad Pitt", "Margot Robbie"}));
