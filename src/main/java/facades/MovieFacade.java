@@ -39,7 +39,7 @@ public class MovieFacade  {
     public long getMovieCount() {
         EntityManager em = emf.createEntityManager();
         try {
-            long movieCount = (long) em.createQuery("SELECT COUNT(m) FROM MOVIE m").getSingleResult();
+            long movieCount = (long) em.createQuery("SELECT COUNT(m) FROM Movie m").getSingleResult();
             return movieCount;
         } finally {
             em.close();
@@ -48,7 +48,7 @@ public class MovieFacade  {
 
     public List<MovieDTO> getAllMovies() {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Movie> query = em.createQuery("SELECT m FROM MOVIE m",Movie.class);
+        TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m",Movie.class);
         List<Movie> movies = query.getResultList();
         List<MovieDTO> movieDTOs = new ArrayList();
         movies.forEach((Movie movie) -> {
