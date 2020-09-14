@@ -48,7 +48,7 @@ public class MovieFacade  {
 
     public List<MovieDTO> getAllMovies() {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Movie> query = em.createQuery("SELECT m FROM movie m",Movie.class);
+        TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m",Movie.class);
         List<Movie> movies = query.getResultList();
         List<MovieDTO> movieDTOs = new ArrayList();
         movies.forEach((Movie movie) -> {
@@ -59,7 +59,7 @@ public class MovieFacade  {
 
     public List<MovieDTO> getMoviesByTitle(String title) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Movie> query = em.createQuery("SELECT m FROM movie m WHERE m.TITLE LIKE :TITLE", Movie.class);
+        TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m WHERE m.TITLE LIKE :TITLE", Movie.class);
         query.setParameter("TITLE", "%"+title+"%");
         List<Movie> movies = query.getResultList();
         List<MovieDTO> movieDTOs = new ArrayList();
