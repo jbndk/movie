@@ -22,7 +22,7 @@ public class Movie implements Serializable {
     private Integer id;
     private int year;
     private String title;
-    private String[] actors;
+    private String star;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date created;
@@ -34,10 +34,10 @@ public class Movie implements Serializable {
     
     private String editedByUser;
 
-    public Movie(int year, String name, String[] actors) {
+    public Movie(int year, String name, String actors) {
         this.year = year;
         this.title = name;
-        this.actors = actors;
+        this.star = actors;
         
         this.created = new Date();
         this.lastEdited = new Date();
@@ -62,12 +62,12 @@ public class Movie implements Serializable {
         this.title = title;
     }
 
-    public String[] getActors() {
-        return actors;
+    public String getStar() {
+        return star;
     }
 
-    public void setActors(String[] actors) {
-        this.actors = actors;
+    public void setStar(String star) {
+        this.star = star;
     }
     
     
@@ -111,7 +111,7 @@ public class Movie implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.actors, other.actors)) {
+        if (!Objects.equals(this.star, other.star)) {
             return false;
         }
         return true;

@@ -75,9 +75,9 @@ public class MovieResourceTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        m1 = new Movie(2001, "Harry Potter and the Philosopher's Stone", new String[]{"Daniel Radcliffe", "Emma Watson", "Alan Rickman", "Rupert Grint"});
-        m2 = new Movie(2002, "Harry Potter and the Chamber of Secrets", new String[]{"Daniel Radcliffe", "Emma Watson", "Alan Rickman", "Rupert Grint"});
-        m3 = new Movie(2019, "Once Upon a Time... in Hollywood", new String[]{"Leonardo DiCaprio", "Brad Pitt", "Margot Robbie"});
+        m1 = new Movie(2001, "Harry Potter and the Philosopher's Stone", "Daniel Radcliffe");
+        m2 = new Movie(2002, "Harry Potter and the Chamber of Secrets", "Daniel Radcliffe");
+        m3 = new Movie(2019, "Once Upon a Time... in Hollywood", "Leonardo DiCaprio");
         try {
             em.getTransaction().begin();
             em.createQuery("DELETE from Movie").executeUpdate();
@@ -146,4 +146,4 @@ public class MovieResourceTest {
           
     }
 }
- */
+*/

@@ -39,7 +39,7 @@ public class MovieFacade  {
     public long getMovieCount() {
         EntityManager em = emf.createEntityManager();
         try {
-            long movieCount = (long) em.createQuery("SELECT COUNT(m) FROM Movie m").getSingleResult();
+            long movieCount = (long) em.createQuery("SELECT COUNT(m) FROM movie m").getSingleResult();
             return movieCount;
         } finally {
             em.close();
@@ -48,7 +48,7 @@ public class MovieFacade  {
 
     public List<MovieDTO> getAllMovies() {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m",Movie.class);
+        TypedQuery<Movie> query = em.createQuery("SELECT m FROM movie m",Movie.class);
         List<Movie> movies = query.getResultList();
         List<MovieDTO> movieDTOs = new ArrayList();
         movies.forEach((Movie movie) -> {
@@ -59,7 +59,7 @@ public class MovieFacade  {
 
     public List<MovieDTO> getMoviesByTitle(String title) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Movie> query = em.createQuery("SELECT m FROM MOVIE m WHERE m.TITLE LIKE :TITLE", Movie.class);
+        TypedQuery<Movie> query = em.createQuery("SELECT m FROM movie m WHERE m.TITLE LIKE :TITLE", Movie.class);
         query.setParameter("TITLE", "%"+title+"%");
         List<Movie> movies = query.getResultList();
         List<MovieDTO> movieDTOs = new ArrayList();
@@ -76,8 +76,8 @@ public class MovieFacade  {
         return new MovieDTO(m);
     }
 
-    public MovieDTO createMovie(int year, String name, String[] actors) {
-        Movie movie = new Movie(year,name,actors);
+    public MovieDTO createMovie(int year, String name, String star) {
+        Movie movie = new Movie(year,name,star);
         EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
@@ -98,9 +98,9 @@ public class MovieFacade  {
         try {
             em.getTransaction().begin();
             em.createQuery("DELETE from MOVIE").executeUpdate();
-            em.persist(new Movie(2002, "Harry Potter and the Chamber of Secrets", new String[]{"Daniel Radcliffe", "Emma Watson", "Alan Rickman", "Rupert Grint"}));
-            em.persist(new Movie(2001, "Harry Potter and the Philosopher's Stone", new String[]{"Daniel Radcliffe", "Emma Watson","Alan Rickman", "Rupert Grint"}));
-            em.persist(new Movie(2019, "Once Upon a Time... in Hollywood", new String[]{"Leonardo DiCaprio", "Brad Pitt", "Margot Robbie"}));
+            em.persist(new Movie(2001, "Harry Potter and the Philosopher's Stone", "Daniel Radcliffe"));
+            em.persist(new Movie(2002, "Harry Potter and the Chamber of Secrets", "Daniel Radcliffe"));
+            em.persist(new Movie(2019, "Once Upon a Time... in Hollywood", "Leonardo DiCaprio"));
             em.getTransaction().commit();
         } finally {
             em.close();

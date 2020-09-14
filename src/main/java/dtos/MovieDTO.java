@@ -6,7 +6,7 @@ public class MovieDTO {
     private int id;
     private int year;
     private String title;
-    private String[] actors;
+    private String star;
 
     public MovieDTO(){}
     
@@ -14,13 +14,13 @@ public class MovieDTO {
         this.id = movie.getId();
         this.year = movie.getYear();
         this.title = movie.getTitle();
-        this.actors = movie.getActors();
+        this.star = movie.getStar();
     }
-    public MovieDTO(int id, int year, String title, String[] actors) {
+    public MovieDTO(int id, int year, String title, String star) {
         this.id = id;
         this.year = year;
         this.title = title;
-        this.actors = actors;
+        this.star = star;
     }
 
     public int getId() {
@@ -35,8 +35,8 @@ public class MovieDTO {
         return title;
     }
 
-    public String[] getActors() {
-        return actors;
+    public String getStar() {
+        return star;
     }
     
    
